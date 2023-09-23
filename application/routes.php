@@ -31,11 +31,26 @@
 |		});
 |
 */
+Route::get('login', 'auth.login@index');
+Route::post('login', 'auth.login@index');
 
-Route::get('/', function()
-{
-	return View::make('home.index');
+Route::get('register', 'auth.register@index');
+Route::post('register', 'auth.register@register');
+
+Route::get('/', function() {
+    return Redirect::to('login');
 });
+// Route::get('/', function()
+// {
+// 	return View::make('home.index');
+// });
+Route::get('index.php', function() {
+    return Redirect::to('login');
+});
+
+// Route::get('users/view', 'UserController@viewUsers');
+Route::get('users/view', 'user@index_viewUsers');
+
 
 /*
 |--------------------------------------------------------------------------

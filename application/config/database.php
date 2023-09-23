@@ -70,7 +70,7 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'database' => 'abc_db',
 			'username' => 'root',
 			'password' => '',
 			'charset'  => 'utf8',
@@ -80,7 +80,7 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'database' => 'abc_db',
 			'username' => 'root',
 			'password' => '',
 			'charset'  => 'utf8',
@@ -91,7 +91,7 @@ return array(
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
 			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'database' => 'abc_db',
 			'username' => 'root',
 			'password' => '',
 			'prefix'   => '',

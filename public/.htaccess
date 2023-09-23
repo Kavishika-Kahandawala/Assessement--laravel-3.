@@ -21,3 +21,22 @@
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
+
+# <IfModule mod_rewrite.c>
+#     Options -MultiViews
+
+#     RewriteEngine On
+
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^ index.php [L]
+# </IfModule>
+# <IfModule mod_rewrite.c>
+#     Options -MultiViews
+#     RewriteEngine On
+
+#     # Redirect to index.php if the request is not a file or directory
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^ index.php [L]
+# </IfModule>

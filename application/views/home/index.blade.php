@@ -53,5 +53,15 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    // Get the base URL of your application
+    var baseUrl = "{{ URL::base() }}";
+    
+    // Construct the login URL
+    var loginUrl = baseUrl + '/auth/login';
+
+    // Redirect to the login page
+    window.location.href = loginUrl;
+</script>
 </body>
 </html>
