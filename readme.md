@@ -1,4 +1,4 @@
-# [Laravel](http://laravel.com) - A PHP Framework For Web Artisans
+# Developed with [Laravel 3](http://laravel.com) - A PHP Framework For Web Artisans
 
 Laravel is a clean and classy framework for PHP web development. Freeing you
 from spaghetti code, Laravel helps you create wonderful applications using
