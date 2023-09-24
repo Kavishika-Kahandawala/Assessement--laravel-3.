@@ -22,7 +22,8 @@ class Auth_Login_Controller extends Base_Controller
 
             if ($user && Hash::check($password, $user->password)) {
                 // Authentication successful
-                // You can set a session variable or implement your authentication logic here
+                //session variable
+                Session::put('user', $username);
 
                 return Redirect::to('dashboard'); // Redirect to a dashboard or home page
             } else {

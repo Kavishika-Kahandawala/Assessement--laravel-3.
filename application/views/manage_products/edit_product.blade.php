@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Add Product | ABC </title>
+    <title>Edit product | ABC </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LINEARICONS -->
     <link rel="stylesheet" href="{{ URL::to('fonts/linearicons/style.css') }}">
@@ -23,11 +23,11 @@
             <form id="form">
 
 
-                <h3>Add product</h3><br />
+                <h3>Edit product</h3><br />
 
                 <div class="form-holder">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Product Name</label>
+                        <label for="pname" class="form-label">Product Name</label>
                         <input type="text" class="form-control" id="pname" name="pname" placeholder="">
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn btn-outline-success" onclick="window.location.href = 'add-category';">+</button>
+                                <button type="button" class="btn btn-outline-success" onclick="window.location.href = '../add-category';">+</button>
                             </div>
                         </div>
 
@@ -55,13 +55,13 @@
                 </div>
                 <div class="form-holder">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Quantity</label>
+                        <label for="quantity" class="form-label">Quantity</label>
                         <input type="text" class="form-control" id="quantity" name="quantity" placeholder="">
                     </div>
                 </div>
                 <div class="form-holder">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Price</label>
+                        <label for="price" class="form-label">Price</label>
                         <input type="text" class="form-control" id="price" name="price" placeholder="">
                     </div>
                 </div>
@@ -73,7 +73,7 @@
 
                 <p id="form_result"></p>
                 <button class="button_submit" type="submit">
-                    <span>Add Item</span>
+                    <span>Edit Item</span>
                 </button>
                 <br />
             </form>
@@ -82,10 +82,29 @@
 
     <script>
         const form = document.getElementById('form');
+        const url = window.location.pathname;
+        const parts = url.split('/');
+        const pid = parts[parts.length - 1];
+
+        function fetchAndPopulateData() {
+            fetch("../api/view-product/" + pid)
+                .then((response) => response.json())
+                .then((product) => {
+                    // Populate the form fields with the product data
+                    form.elements["pname"].value = product.attributes.pname;
+                    form.elements["quantity"].value = product.attributes.quantity;
+                    form.elements["price"].value = product.attributes.price;
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        }
+
+        fetchAndPopulateData();
 
         async function fetchAndPopulateCategories() {
             try {
-                const response = await fetch('api/get-category'); // Replace with your actual API endpoint
+                const response = await fetch('../api/get-category'); // Replace with your actual API endpoint
                 if (response.ok) {
                     const categoryData = await response.json();
                     pcat.innerHTML = ''; // Clear existing options
@@ -106,6 +125,8 @@
         // Call the function to populate categories when the page loads
         fetchAndPopulateCategories();
 
+
+
         form.addEventListener('submit', async event => {
             event.preventDefault();
 
@@ -116,9 +137,14 @@
                 price: document.getElementById('price').value
             };
 
+            const form = document.getElementById('form');
+            const url = window.location.pathname;
+            const parts = url.split('/');
+            const pid = parts[parts.length - 1];
+
             try {
-                const res = await fetch('api/add-product', {
-                    method: 'POST',
+                const res = await fetch('../api/edit-product/' + pid, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },

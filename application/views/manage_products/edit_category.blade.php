@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Add category | ABC </title>
+    <title>Edit category | ABC </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LINEARICONS -->
     <link rel="stylesheet" href="{{ URL::to('fonts/linearicons/style.css') }}">
@@ -22,7 +22,7 @@
             <form id="form">
 
 
-                <h3>Add Category</h3><br />
+                <h3>Edit Category</h3><br />
 
                 <div class="form-holder">
                     <div class="mb-3">
@@ -51,7 +51,7 @@
             };
 
             try {
-                const res = await fetch('api/add-category', {
+                const res = await fetch('../api/add-category', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
