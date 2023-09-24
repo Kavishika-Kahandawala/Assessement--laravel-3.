@@ -34,7 +34,7 @@ Use `PUT` method for this (Not `POST`, as this an update method). <br/>
 The url is as following
 `http://localhost/<project name>/public/api/edit-product/21`
 
-`<project name` should be replaced with correct path name.<br/>
+`<project name>` should be replaced with correct path name.<br/>
 
 Ex: `Assessement%20-laravel%203`
 
