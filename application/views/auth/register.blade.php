@@ -14,7 +14,7 @@
     <div class="wrapper">
         <div class="inner">
             <img src="images/image-1.png" alt="" class="image-1">
-            <form action="{{ URL::to('login') }}" method="post">
+            <form action="{{ URL::to('register') }}" method="post">
                 <h3>Register a new account</h3>
                 <div class="form-holder">
                     <span class="lnr lnr-user"></span>

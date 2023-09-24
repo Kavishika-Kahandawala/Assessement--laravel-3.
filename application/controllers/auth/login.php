@@ -10,18 +10,30 @@ class Auth_Login_Controller extends Base_Controller
         return View::make('auth.login');
     }
 
-    public function post_index()
+    public function post_login()
     {
-        $username = Input::get('username');
-        $password = Input::get('password');
+        try {
+            // Retrieve form data
+            $username = Input::get('username');
+            $password = Input::get('password');
 
-        // Replace this with your authentication logic (e.g., check credentials in a database)
-        if ($username === 'your_username' && $password === 'your_password') {
-            // Authentication successful, redirect to the dashboard
-            return Redirect::to('dashboard');
-        } else {
-            // Authentication failed, redirect back to the login page with an error message
-            return Redirect::to('login')->with('message', 'Login failed. Please try again.');
+            // Query the database to find a user with the provided username
+            $user = User::where('username', '=', $username)->first();
+
+            if ($user && Hash::check($password, $user->password)) {
+                // Authentication successful
+                // You can set a session variable or implement your authentication logic here
+
+                return Redirect::to('dashboard'); // Redirect to a dashboard or home page
+            } else {
+                // Authentication failed
+                return Redirect::to('login')->with('error', 'Invalid username or password');
+            }
+        } catch (Exception $e) {
+            // Handle exceptions
+            // Log the error, redirect to an error page, or display an error message
+            Log::write('error', $e->getMessage());
+            return View::make('error')->with('message', 'An error occurred while processing your login.');
         }
     }
 }

@@ -15,6 +15,7 @@
         <div class="inner">
             <img src="images/image-1.png" alt="" class="image-1">
             <form action="{{ URL::to('login') }}" method="post">
+
                 <h3>Log on to your account</h3>
                 <div class="form-holder">
                     <span class="lnr lnr-user"></span>

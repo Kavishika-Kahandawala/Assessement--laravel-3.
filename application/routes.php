@@ -31,25 +31,80 @@
 |		});
 |
 */
+
+// Route::get('test-database-connection', function () {
+// 	try {
+// 		// Attempt to connect to the database
+// 		DB::connection()->getPdo();
+
+// 		return "Connected to the database!";
+// 	} catch (Exception $e) {
+// 		return "Failed to connect to the database. Error: " . $e->getMessage();
+// 	}
+// });
+
+// Route::get('test-access-users-table', function () {
+// 	try {
+// 		// Query the 'users' table
+// 		$users = User::all();
+
+// 		// Return the results as a list
+// 		$output = '<ul>';
+// 		foreach ($users as $user) {
+// 			$output .= '<li>User ID: ' . $user->id . ', Username: ' . $user->username . ', Name: ' . $user->name . '</li>';
+// 		}
+// 		$output .= '</ul>';
+
+// 		return $output;
+// 	} catch (Exception $e) {
+// 		return "Failed to access the 'users' table. Error: " . $e->getMessage();
+// 	}
+// });
+
+
 Route::get('login', 'auth.login@index');
-Route::post('login', 'auth.login@index');
+Route::post('login', 'auth.login@login');
+
 
 Route::get('register', 'auth.register@index');
 Route::post('register', 'auth.register@register');
 
-Route::get('/', function() {
-    return Redirect::to('login');
+//  Dashboard
+Route::get('dashboard', 'dashboard@index');
+
+// Show the product creation form
+Route::get('add-product', 'manage_products.product_form@index');
+Route::get('add-category', 'manage_products.category_form@index');
+
+// API
+// post
+Route::post('api/add-product', 'api.add_products@index');
+Route::post('api/add-category', 'api.add_category@index');
+// Route::post('api/add-product', array('uses' => 'api.add_products@addProduct'));
+
+// get
+Route::get('api/get-category', 'api.get_products@index');
+
+
+
+
+
+
+
+// APIs
+// Route::controller('api/registration');
+// Route::post('api/register', 'auth_register@api_register');
+
+Route::get('/', function () {
+	return Redirect::to('login');
 });
 // Route::get('/', function()
 // {
 // 	return View::make('home.index');
 // });
-Route::get('index.php', function() {
-    return Redirect::to('login');
+Route::get('index.php', function () {
+	return Redirect::to('login');
 });
-
-// Route::get('users/view', 'UserController@viewUsers');
-Route::get('users/view', 'user@index_viewUsers');
 
 
 /*
@@ -68,13 +123,11 @@ Route::get('users/view', 'user@index_viewUsers');
 |
 */
 
-Event::listen('404', function()
-{
+Event::listen('404', function () {
 	return Response::error('404');
 });
 
-Event::listen('500', function($exception)
-{
+Event::listen('500', function ($exception) {
 	return Response::error('500');
 });
 
@@ -106,22 +159,20 @@ Event::listen('500', function($exception)
 |
 */
 
-Route::filter('before', function()
-{
+Route::filter('before', function () {
 	// Do stuff before every request to your application...
 });
 
-Route::filter('after', function($response)
-{
+Route::filter('after', function ($response) {
 	// Do stuff after every request to your application...
 });
 
-Route::filter('csrf', function()
-{
-	if (Request::forged()) return Response::error('500');
+Route::filter('csrf', function () {
+	if (Request::forged())
+		return Response::error('500');
 });
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) return Redirect::to('login');
+Route::filter('auth', function () {
+	if (Auth::guest())
+		return Redirect::to('login');
 });
