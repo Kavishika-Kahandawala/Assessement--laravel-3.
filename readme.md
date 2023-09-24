@@ -1,66 +1,54 @@
 # Developed with [Laravel 3](http://laravel.com) - A PHP Framework For Web Artisans
 
-Laravel is a clean and classy framework for PHP web development. Freeing you
-from spaghetti code, Laravel helps you create wonderful applications using
-simple, expressive syntax. Development should be a creative experience that you
-enjoy, not something that is painful. Enjoy the fresh air.
-
-[Official Website & Documentation](http://laravel.com)
+This is an assessment created as a simple product manager (Similar: Inventory Management System). Uses Laravel 3 as instructed and uses API for data insertion and managing. Created with MVC (Model, view, controller) architecture.
 
 ## Feature Overview
 
-- Simple routing using Closures or controllers.
-- Views and templating.
-- Driver based session and cache handling.
-- Database abstraction with query builder.
-- Authentication.
+- Simple routing using Closures or controllers.<br>
+Routing checks authentication status before handling data
+>**Note**: *If needed to test APIs with postman or similar system comment out routings which uses `'auth'` filtering. Else simply you can use coding in `other/router.txt` whre it has the changed routings for testing with postman which do not require login. Replace `router.php` coding with above mentioned txt file data.* <br>
+
+- Views and templating.<br>
+views and as well as controllers are divided to sub-folders for the easiness of the code reviewing and handling.
+
+- Database abstraction with query builder. <br>
+This project uses `MySQL`. The sql file is stored at `'sql files'` sub-folder.
+
+- Authentication.<br/>
+Project uses password hashing, which is an industrial standard when handling passwords. Currently this application uses `Bcrypt`. As the password are hashed, in databse you cannot see user's password and a `hashed password` will be there. 
+
 - Migrations.
 - PHPUnit Integration.
 - A lot more.
 
-## A Few Examples
+## Example for API testing
 
-### Hello World:
+Before starting, please use the methods included before to make the `router.php` much more easier for testing with Postman or any other similar approaches. Otherwise you cannot test results as expected and the response will be the login page
 
-```php
-<?php
+### Example:
 
-Route::get('/', function()
+- Testing edit product API
+
+Use `PUT` method for this (Not `POST`, as this an update method). <br/>
+
+The url is as following
+`http://localhost/<project name>/public/api/edit-product/21`
+
+`<project name` should be replaced with correct path name.<br/>
+
+Ex: `Assessement%20-laravel%203`
+
+Raw data are,
+
+```Json
 {
-	return "Hello World!";
-});
+    "pname": "Updated Product Name",
+    "pcat": "Electronics",
+    "quantity": 15,
+    "price": 199.99
+}
 ```
 
-### Passing Data To Views:
-
-```php
-<?php
-
-Route::get('user/(:num)', function($id)
-{
-	$user = DB::table('users')->find($id);
-
-	return View::make('profile')->with('user', $user);
-});
-```
-
-### Redirecting & Flashing Data To The Session:
-
-```php
-<?php
-
-return Redirect::to('profile')->with('message', 'Welcome Back!');
-```
-
-## Contributing to Laravel
-
-Contributions are encouraged and welcome; however, please review the Developer
-Certificate of Origin in the "license.txt" file included in the repository. All
-commits must be signed off using the `-s` switch.
-
-```bash
-git commit -s -m "this commit will be signed off automatically!"
-```
 
 ## License
 
