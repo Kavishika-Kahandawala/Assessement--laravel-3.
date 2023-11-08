@@ -1,6 +1,6 @@
 # Developed with [Laravel 3](http://laravel.com) - A PHP Framework For Web Artisans
 
-This is an assessment created as a simple product manager (Similar: Inventory Management System). Uses Laravel 3 as instructed and uses API for data insertion and managing. Created with MVC (Model, view, controller) architecture.
+This is an assessment created, a simple product manager (Similar: Inventory Management System). Uses Laravel 3 (as instructed per assessement) and uses API for data insertion and managing. Created with MVC (Model, view, controller) architecture.
 
 ## Feature Overview
 
